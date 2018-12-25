@@ -31,7 +31,7 @@ def read_temp():
         return temp_c
 
 
-store = LocalStorage('thermostat.db')
+store = LocalStorage('/home/pi/thermostat.db')
 id = store.init_sensor('ds18b20')
 
 while True:

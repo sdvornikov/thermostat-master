@@ -54,7 +54,7 @@ class LocalStorage:
     def log_sensor_data(self, sensor_id, data):
         try:
             c = self.__conn.cursor()
-            c.execute("INSERT INTO data(data, ts, sensor_id) VALUES (?, datetime('now'), ?)", (data,sensor_id))
+            c.execute("INSERT INTO data(data, ts, sensor_id) VALUES (?, datetime('now'), ?)", (data, sensor_id))
             self.__conn.commit()
         except Error as e:
             print(e)
@@ -62,7 +62,6 @@ class LocalStorage:
     def create_connection(self, file_name):
         try:
             conn = sqlite3.connect(file_name)
-            print(sqlite3.version)
             return conn
         except Error as e:
             print(e)
