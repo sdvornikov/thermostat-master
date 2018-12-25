@@ -2,6 +2,8 @@ import os
 import glob
 import time
 
+from local_store import LocalStorage
+
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
@@ -29,6 +31,11 @@ def read_temp():
         return temp_c
 
 
+store = LocalStorage('thermostat.db')
+id = store.init_sensor('ds18b20')
+
 while True:
-    print(read_temp())
-    time.sleep(1)
+    t = read_temp()
+    print(t)
+    store.log_sensor_data(id, str(t))
+    time.sleep(60)
