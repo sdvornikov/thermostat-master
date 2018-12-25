@@ -45,6 +45,7 @@ class LocalStorage:
             row = c.fetchone()
             if row is None:
                 c.execute('INSERT INTO sensor (name) VALUES (?)', (name,))
+                self.__conn.commit()
                 return c.lastrowid
             return row[0]
         except Error as e:
@@ -54,6 +55,7 @@ class LocalStorage:
         try:
             c = self.__conn.cursor()
             c.execute("INSERT INTO data(data, ts, sensor_id) VALUES (?, datetime('now'), ?)", (data,sensor_id))
+            self.__conn.commit()
         except Error as e:
             print(e)
 
