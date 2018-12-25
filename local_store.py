@@ -53,7 +53,7 @@ class LocalStorage:
     def log_sensor_data(self, sensor_id, data):
         try:
             c = self.__conn.cursor()
-            c.execute('INSERT INTO data(data, ts, sensor_id) VALUES (?, datetime(now), ?)', (data,sensor_id))
+            c.execute("INSERT INTO data(data, ts, sensor_id) VALUES (?, datetime('now'), ?)", (data,sensor_id))
         except Error as e:
             print(e)
 
