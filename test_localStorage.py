@@ -22,5 +22,7 @@ class TestLocalStorage(TestCase):
         self.assertEqual(2, id2)
 
     def test_log_sensor_data(self):
-        self.fail()
-
+        store = LocalStorage(':memory:')
+        id = store.init_sensor('test_sensor')
+        store.log_sensor_data(id, 'xxx')
+        # TODO: assert something
