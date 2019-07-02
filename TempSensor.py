@@ -34,6 +34,8 @@ class Ds18b20RawData:
         return self._raw_lines[0].strip()[-3:] == 'YES'
 
     def get_temperature(self):
+        if not self.is_valid():
+            return None
         equals_pos = self._raw_lines[1].find('t=')
         if equals_pos != -1:
             temp_string = self._raw_lines[1][equals_pos + 2:]
