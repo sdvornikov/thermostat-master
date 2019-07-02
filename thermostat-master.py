@@ -14,5 +14,5 @@ while True:
     print(t)
     store.log_sensor_data(id, str(t))
     payload = {'sensorId': id, 'ts': datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'value': str(t)}
-    r = requests.put("https://411o2lqb64.execute-api.us-east-1.amazonaws.com/default/writeValue", data=payload)
+    r = requests.put("https://411o2lqb64.execute-api.us-east-1.amazonaws.com/default/writeValue", json=payload)
     time.sleep(60)
